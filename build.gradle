@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.9'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'com.typesafe.akka:akka-actor_2.10:2.3.3'
+}
