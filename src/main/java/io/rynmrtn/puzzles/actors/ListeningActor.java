@@ -10,6 +10,8 @@ public class ListeningActor extends UntypedActor {
         if(message instanceof HashSet) {
             HashSet<Integer> primeNumbers = (HashSet<Integer>) message;
             System.out.println(String.format("%d prime numbers found in range; here they are: %s", primeNumbers.size(), primeNumbers.toString()));
+        } else {
+            unhandled(message);
         }
     }
 }
