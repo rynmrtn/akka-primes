@@ -18,7 +18,7 @@ I decided to implement the project in Java so that I could focus on solving the 
 
 This `PrimeNumberApplication` accepts an input value `N` (not trusted) and uses the input as the upper-bound for the determination of all primes between 1 and `N`. The `MasterActor` then orchestrates the work by routing processing requests to `PrimeNumberActor`.
 
-The `PrimeNumberActor` will then determine if a number is prime and pass a message back to the sender that the value is a `PrimeNumber` or `NonPrimeNumber` which is then organized by the `MasterActor`.
+The `PrimeNumberActor` will then determine if a number is prime and pass a message back to the sender that the value is a `PrimeNumber` or `NonPrimeNumber`. The sender, `MasterActor`, then processes this and stores the prime numbers in a `Set` so that no numbers are duplicated.
 
 When processing is complete (all numbers between 1 and `N` are processed), the `MasterActor` will send a message to the `ListeningActor` with a `Set` of `PrimeNumber` objects. 
 

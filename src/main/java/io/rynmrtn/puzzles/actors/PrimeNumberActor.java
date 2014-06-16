@@ -10,7 +10,7 @@ public class PrimeNumberActor extends UntypedActor {
     public void onReceive(Object message) throws Exception {
         if(message instanceof Integer) {
             Integer i = (Integer) message;
-            // If the number is prime, notify the sender; otherwise, they don't care
+
             if(isPrime(i)) {
                 getSender().tell(new PrimeNumber(i), getSelf());
             } else {
@@ -21,7 +21,7 @@ public class PrimeNumberActor extends UntypedActor {
         }
     }
 
-    // Simple method to determine if a number is prime
+    // Simple method from the internet to determine if a number is prime
     boolean isPrime(int n) {
         //check if n is a multiple of 2
         if (n != 2 && n%2==0) return false;

@@ -9,10 +9,6 @@ public class PrimeNumber {
         this.number = number;
     }
 
-    public Integer getInput() {
-        return number;
-    }
-
     @Override
     public String toString() {
         return number.toString();

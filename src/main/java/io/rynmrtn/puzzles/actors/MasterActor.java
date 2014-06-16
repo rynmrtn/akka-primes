@@ -30,11 +30,6 @@ public class MasterActor extends UntypedActor {
         this.primeNumberActor = getContext().actorOf(new Props(PrimeNumberActor.class).withRouter(new RoundRobinRouter(100)),"primeActor");
     }
 
-//    @Override
-//    public void preStart() {
-//        log.debug("Starting");
-//    }
-
     @Override
     public void onReceive(Object message) throws Exception {
 
@@ -56,10 +51,7 @@ public class MasterActor extends UntypedActor {
 
             this.originalInput = ((UserInput) message).getInput();
 
-            // This queues up and sends/queues all of the messages and informs that the prime calculations are complete when they may
-            // or may not have been performed yet.
-
-            // How do i encapsulate the fact that "this is the last prime number to be calculated?"
+            // This queues up and sends/queues all of the messages to determine what numbers are Prime.
             for(Integer i = 1; i < this.originalInput; i++) {
                 primeNumberActor.tell(i, getSelf());
             }
