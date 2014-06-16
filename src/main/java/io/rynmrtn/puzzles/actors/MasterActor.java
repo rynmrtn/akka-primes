@@ -5,7 +5,6 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.event.LoggingAdapter;
 import akka.event.Logging;
-import akka.routing.RoundRobinPool;
 import akka.routing.RoundRobinRouter;
 import io.rynmrtn.puzzles.primes.NonPrimeNumber;
 import io.rynmrtn.puzzles.primes.PrimeNumber;
@@ -28,9 +27,13 @@ public class MasterActor extends UntypedActor {
         this.messageCount = 1;
         this.primeNumbers = new HashSet<PrimeNumber>();
         this.listeningActor = listeningActor;
-//        this.primeNumberActor = getContext().actorOf(Props.create(PrimeNumberActor.class).withRouter(new RoundRobinRouter(5)),"primeActor");
-        this.primeNumberActor = getContext().actorOf(Props.create(PrimeNumberActor.class), "primeActor");
+        this.primeNumberActor = getContext().actorOf(new Props(PrimeNumberActor.class).withRouter(new RoundRobinRouter(100)),"primeActor");
     }
+
+//    @Override
+//    public void preStart() {
+//        log.debug("Starting");
+//    }
 
     @Override
     public void onReceive(Object message) throws Exception {

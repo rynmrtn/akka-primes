@@ -10,6 +10,6 @@ repositories {
 }
 
 dependencies {
-	compile 'com.typesafe.akka:akka-actor_2.10:2.3.3'
+	compile 'com.typesafe.akka:akka-actor_2.10:2.1.4'
     compile 'ch.qos.logback:logback-classic:1.1.2'
 }

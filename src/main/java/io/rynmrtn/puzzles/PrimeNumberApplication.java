@@ -13,9 +13,9 @@ public class PrimeNumberApplication {
 
         ActorSystem system = ActorSystem.create("PrimeNumberApp");
 
-        final ActorRef listeningActor = system.actorOf(Props.create(ListeningActor.class), "listener");
+        final ActorRef listeningActor = system.actorOf(new Props(ListeningActor.class), "listener");
 
-        ActorRef master = system.actorOf(Props.create(new UntypedActorFactory() {
+        ActorRef master = system.actorOf(new Props(new UntypedActorFactory() {
             @Override
             public Actor create() throws Exception {
                 return new MasterActor(listeningActor);
@@ -27,6 +27,7 @@ public class PrimeNumberApplication {
         System.out.println(String.format("Now printing prime numbers from 1 to %d", input.getInput()));
         master.tell(input, listeningActor);
 
+        system.awaitTermination();
         system.shutdown();
     }
 
